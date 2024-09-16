@@ -14,14 +14,6 @@ public class Character {
         this.weapon = weapon;
         this.defence = defence;
     }
-    
-//    public Character(String name, Weapon weapon) {
-//        Character character = new Character("WARRIOR", name, 100, weapon, 5);
-//    }
-//
-//    public Character Commander(String name, Weapon weapon) {
-//        return new Character("COMMANDER", name, 150, weapon, 15);
-//    }
 
     public String getName() {
         return this.name;
@@ -35,7 +27,9 @@ public class Character {
                     this.name + " атакует " +
                     opponent.name + " с " +
                     weapon.getName() + " и наносит " +
-                    weapon.getDamage() + " урона");
+                    weapon.getDamage() + " урона. У " +
+                    opponent.name + " осталось " +
+                    opponent.health + " здоровья");
         } else {
             System.out.println(
                     this.name + " атакует " +

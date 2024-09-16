@@ -23,7 +23,7 @@ public class Team {
     }
 
     public boolean hasMembers() {
-        return this.members.stream().anyMatch(Character::isAlive);
+        return this.members.stream().anyMatch(Character -> Character.isAlive());
     }
 
     public Character getAliveMembers() {
