@@ -26,7 +26,7 @@ public class Team {
         return this.members.stream().anyMatch(Character -> Character.isAlive());
     }
 
-    public Character getAliveMembers() {
+    public Character getAliveMember() {
         for(Character member : members) {
             if(member.isAlive()) {
                 return member;

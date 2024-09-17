@@ -13,8 +13,8 @@ public class Battle {
 
     public void start() {
         while (team1.hasMembers() && team2.hasMembers()) {
-            Character character1 = team1.getAliveMembers(),
-                      character2 = team2.getAliveMembers();
+            Character character1 = team1.getAliveMember(),
+                      character2 = team2.getAliveMember();
             character1.attack(character2);
             if(!character2.isAlive()) {
                 System.out.println(character2.getName() + " повержен!");
