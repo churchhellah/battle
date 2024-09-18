@@ -3,7 +3,7 @@ package org.battle;
 import org.battle.models.Character;
 
 public final class Battle {
-    private Team team1,
+    private final Team team1,
                  team2;
 
     public Battle(Team team1, Team team2) {

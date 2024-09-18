@@ -1,11 +1,11 @@
 package org.battle.models;
 
 public final class Character {
-    private String rank;
-    private String name;
+    private final String rank;
+    private final String name;
     private int health;
-    private Weapon weapon;
-    private int defence;
+    private final Weapon weapon;
+    private final int defence;
 
     public Character(String rank, String name, int health, Weapon weapon, int defence) {
         this.rank = rank;

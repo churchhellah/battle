@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public final class Team {
-    private String name;
-    private List<Character> members;
+    private final String name;
+    private final List<Character> members;
 
     public Team(String name) {
         this.name = name;
