@@ -5,7 +5,7 @@ import org.battle.models.Character;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Team {
+public final class Team {
     private String name;
     private List<Character> members;
 

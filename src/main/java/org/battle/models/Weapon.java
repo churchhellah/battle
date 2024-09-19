@@ -1,6 +1,6 @@
 package org.battle.models;
 
-public class Weapon {
+public final class Weapon {
     String name;
     int damage;
 

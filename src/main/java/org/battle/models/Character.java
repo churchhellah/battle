@@ -1,6 +1,6 @@
 package org.battle.models;
 
-public class Character {
+public final class Character {
     private String rank;
     private String name;
     private int health;

@@ -2,7 +2,7 @@ package org.battle;
 
 import org.battle.models.Character;
 
-public class Battle {
+public final class Battle {
     private Team team1,
                  team2;
 
