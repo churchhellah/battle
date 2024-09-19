@@ -1,8 +1,8 @@
 package org.battle.models;
 
 public final class Weapon {
-    String name;
-    int damage;
+    private final String name;
+    private final int damage;
 
     public Weapon(String name, int damage) {
         this.name = name;
