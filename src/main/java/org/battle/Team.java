@@ -2,16 +2,22 @@ package org.battle;
 
 import org.battle.models.Character;
 
+import javax.swing.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public final class Team {
     private final String name;
-    private final List<Character> members;
+    private List<Character> members;
 
     public Team(String name) {
         this.name = name;
-        this.members = new ArrayList<>();
+        List<Character> tempMembers = new ArrayList<>();
+
+        members.addAll(tempMembers);
+
+        this.members = Collections.unmodifiableList(tempMembers);
     }
 
     public String getName() {
@@ -19,7 +25,12 @@ public final class Team {
     }
 
     public void addMember(Character member) {
-        this.members.add(member);
+        // Создаем изменяемую копию списка
+        //List<Character> modifiableMembers = new ArrayList<>(this.members);
+        // Добавляем в изменяемую копию списка member
+        tempMembers.add(member);
+        // Обновляем исходный список
+        //this.members = Collections.unmodifiableList(new ArrayList<>(modifiableMembers));
     }
 
     public boolean hasMembers() {

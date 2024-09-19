@@ -1,6 +1,7 @@
 package org.battle;
 
 import org.battle.models.Character;
+import org.battle.models.Weapon;
 
 public final class Battle {
     private final Team team1,
@@ -12,6 +13,7 @@ public final class Battle {
     }
 
     public void start() {
+        team2.addMember(new Character("WARRIOR", "ADSFA", 25, new Weapon("KNIFE", 11), 10));
         while (team1.hasMembers() && team2.hasMembers()) {
             Character character1 = team1.getAliveMember(),
                       character2 = team2.getAliveMember();

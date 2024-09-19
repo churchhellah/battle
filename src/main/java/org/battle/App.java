@@ -2,6 +2,9 @@ package org.battle;
 import org.battle.models.Character;
 import org.battle.models.Weapon;
 
+import java.util.ArrayList;
+import java.util.Collections;
+
 public final class App
 {
     public static void main( String[] args ) {
