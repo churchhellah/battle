@@ -13,7 +13,6 @@ public final class Battle {
     }
 
     public void start() {
-        team2.addMember(new Character("WARRIOR", "ADSFA", 25, new Weapon("KNIFE", 11), 10));
         while (team1.hasMembers() && team2.hasMembers()) {
             Character character1 = team1.getAliveMember(),
                       character2 = team2.getAliveMember();
