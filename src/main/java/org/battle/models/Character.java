@@ -1,5 +1,12 @@
 package org.battle.models;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
+@ToString
+//@AllArgsConstructor
+//@NoArgsConstructor
 public final class Character {
     private final String rank;
     private final String name;

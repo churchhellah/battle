@@ -8,14 +8,20 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+/*
+commons-collections4
+com.google.guava
+ */
+//ImmutableSet.of()
+
 public final class Team {
     private final String name;
-    private List<Character> members;
+    private final List<Character> members;
 
     // Конструктор класса. Принимает на вход изменяемый список и делает его неизменяемым
-    public Team(String name, List<Character> members) {
+    public Team(String name, Character ... members) {
         this.name = name;
-        this.members = Collections.unmodifiableList(new ArrayList<>(members));
+        this.members = Collections.unmodifiableList(members);
 
 //        List<Character> tempMembers = new ArrayList<>();
 //

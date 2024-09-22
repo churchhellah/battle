@@ -17,20 +17,22 @@ public final class Battle {
             Character character1 = team1.getAliveMember(),
                       character2 = team2.getAliveMember();
             character1.attack(character2);
-            if(!character2.isAlive()) {
+            if (!character2.isAlive()) {
                 System.out.println(character2.getName() + " повержен!");
             }
 
-            if(team2.hasMembers()){
+            if (team2.hasMembers()) {
                 character2.attack(character1);
-                if(!character1.isAlive()) {
+                if (!character1.isAlive()) {
                     System.out.println(character1.getName() + " повержен!");
                 }
             }
         }
 
-        if(team1.hasMembers()){
+        if (team1.hasAliveMembers()) {
             System.out.println("Команда " + team1.getName() + " победила!");
-        } else System.out.println("Команда " + team2.getName() + " победила!");
+        } else {
+            System.out.println("Команда " + team2.getName() + " победила!");
+        }
     }
 }
