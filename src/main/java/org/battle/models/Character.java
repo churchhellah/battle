@@ -1,35 +1,24 @@
 package org.battle.models;
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.NonNull;
 
-@ToString
-//@AllArgsConstructor
-//@NoArgsConstructor
+@AllArgsConstructor
 public final class Character {
     private final String rank;
+    @Getter
     private final String name;
     private int health;
     private final Weapon weapon;
     private final int defence;
 
-    public Character(String rank, String name, int health, Weapon weapon, int defence) {
-        this.rank = rank;
-        this.name = name;
-        this.health = health;
-        this.weapon = weapon;
-        this.defence = defence;
-    }
-
-    public String getName() {
-        return this.name;
-    }
-
     public void attack(Character opponent) {
         int damage = weapon.getDamage() - opponent.defence;
-        if(damage > 0) {
+        if (damage > 0) {
             opponent.health -= damage;
+            // TODO подключить логгер
             System.out.println(
                     this.name + " атакует " +
                     opponent.name + " с " +
@@ -38,6 +27,7 @@ public final class Character {
                     opponent.name + " осталось " +
                     opponent.health + " здоровья");
         } else {
+            // TODO подключить логгер
             System.out.println(
                     this.name + " атакует " +
                     opponent.name + " с " +
