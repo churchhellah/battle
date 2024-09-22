@@ -5,7 +5,6 @@ import lombok.NoArgsConstructor;
 import org.battle.models.Character;
 
 @AllArgsConstructor
-@NoArgsConstructor(force = true)
 public final class Battle {
     private final Team team1,
                  team2;
