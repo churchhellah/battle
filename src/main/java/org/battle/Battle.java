@@ -1,11 +1,14 @@
 package org.battle;
 
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import org.battle.models.Character;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @AllArgsConstructor
 public final class Battle {
+    private static final Logger logger = LoggerFactory.getLogger(Battle.class);
+
     private final Team team1,
                  team2;
 
@@ -20,6 +23,7 @@ public final class Battle {
             // Если HP атакуемого кончились
             if (!character2.isAlive()) {
                 // TODO подключить логгер
+                logger.info("TEST");
                 System.out.println(character2.getName() + " повержен!");
             }
             // Проверяем, остались ли живые участники в команде после атаки
