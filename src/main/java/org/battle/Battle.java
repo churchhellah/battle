@@ -22,9 +22,7 @@ public final class Battle {
             character1.attack(character2);
             // Если HP атакуемого кончились
             if (!character2.isAlive()) {
-                // TODO подключить логгер
-                logger.info("TEST");
-                System.out.println(character2.getName() + " повержен!");
+                logger.info("{} повержен!", character2.getName());
             }
             // Проверяем, остались ли живые участники в команде после атаки
             if (team2.hasAliveMembers()) { // Если остались
@@ -32,18 +30,15 @@ public final class Battle {
                 character2.attack(character1);
                 // Если HP атакуемого кончились
                 if (!character1.isAlive()) {
-                    // TODO подключить логгер
-                    System.out.println(character1.getName() + " повержен!");
+                    logger.info("{} повержен!", character1.getName());
                 }
             }
         }
         // Если, после выхода из цикла в первой команде остались живые
         if (team1.hasAliveMembers()) {
-            // TODO подключить логгер
-            System.out.println("Команда " + team1.getName() + " победила!");
+            logger.info("Команда {} победила!", team1.getName());
         } else { // Если, после выхода из цикла во второй команде остались живые
-            // TODO подключить логгер
-            System.out.println("Команда " + team2.getName() + " победила!");
+            logger.info("Команда {} победила!", team2.getName());
         }
     }
 }

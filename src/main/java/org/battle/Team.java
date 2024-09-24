@@ -20,7 +20,8 @@ public final class Team {
     public Team(String name, Character... members) {
         this.name = name;
         this.members = Set.of(members);
-        logger.info("TTTTTTTTTTTTTTTTTTTTTTT");
+        logger.debug("Team {} created with members {}", name, members);
+        logger.debug("Team {} created with members {}", name, Map);
     }
 
     // Метод проверки наличия живых участников в members
