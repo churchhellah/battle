@@ -1,34 +1,31 @@
 package org.battle;
 
+import lombok.Getter;
 import org.battle.models.Character;
-
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public final class Team {
+    @Getter
     private final String name;
-    private final List<Character> members;
+    // Команда содержит массив уникальных Character
+    private final Set<Character> members;
 
-    public Team(String name) {
+    // Конструктор класса. Принимает на вход массив объектов Character
+    // и делает из него неизменяемый Set
+    public Team(String name, Character... members) {
         this.name = name;
-        this.members = new ArrayList<>();
+        this.members = Set.of(members);
     }
 
-    public String getName() {
-        return this.name;
-    }
-
-    public void addMember(Character member) {
-        this.members.add(member);
-    }
-
-    public boolean hasMembers() {
+    // Метод проверки наличия живых участников в members
+    public boolean hasAliveMembers() {
         return this.members.stream().anyMatch(Character -> Character.isAlive());
     }
 
+    // Метод получения живого участника из members
     public Character getAliveMember() {
-        for(Character member : members) {
-            if(member.isAlive()) {
+        for (Character member : members) {
+            if (member.isAlive()) {
                 return member;
             }
         } return null;

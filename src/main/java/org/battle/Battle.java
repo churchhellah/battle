@@ -1,35 +1,45 @@
 package org.battle;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.battle.models.Character;
 
+@AllArgsConstructor
 public final class Battle {
     private final Team team1,
                  team2;
 
-    public Battle(Team team1, Team team2) {
-        this.team1 = team1;
-        this.team2 = team2;
-    }
-
     public void start() {
-        while (team1.hasMembers() && team2.hasMembers()) {
+        // Пока в каждой из команд есть живые участники
+        while (team1.hasAliveMembers() && team2.hasAliveMembers()) {
+            // Получаем по одному участнику из команды
             Character character1 = team1.getAliveMember(),
                       character2 = team2.getAliveMember();
+            // Участник первой команды атакует участника второй команды
             character1.attack(character2);
-            if(!character2.isAlive()) {
+            // Если HP атакуемого кончились
+            if (!character2.isAlive()) {
+                // TODO подключить логгер
                 System.out.println(character2.getName() + " повержен!");
             }
-
-            if(team2.hasMembers()){
+            // Проверяем, остались ли живые участники в команде после атаки
+            if (team2.hasAliveMembers()) { // Если остались
+                // Участник второй команды атакует участника первой команды
                 character2.attack(character1);
-                if(!character1.isAlive()) {
+                // Если HP атакуемого кончились
+                if (!character1.isAlive()) {
+                    // TODO подключить логгер
                     System.out.println(character1.getName() + " повержен!");
                 }
             }
         }
-
-        if(team1.hasMembers()){
+        // Если, после выхода из цикла в первой команде остались живые
+        if (team1.hasAliveMembers()) {
+            // TODO подключить логгер
             System.out.println("Команда " + team1.getName() + " победила!");
-        } else System.out.println("Команда " + team2.getName() + " победила!");
+        } else { // Если, после выхода из цикла во второй команде остались живые
+            // TODO подключить логгер
+            System.out.println("Команда " + team2.getName() + " победила!");
+        }
     }
 }
