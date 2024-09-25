@@ -5,43 +5,48 @@ import org.junit.jupiter.api.Test;
 
 class CharacterTest {
 
-    private final Character zina = new Character(
-            "ЕФРЕЙТОР",
-            "ЗИНА",
-            10,
-            new Weapon(
-                    "machete",
-                    10),
-            4);
-    private final Character lola = new Character(
-            "КУК",
-            "ЛОЛА",
-            20,
-            new Weapon(
-                    "fork",
-                    4),
-            1
-    );
-    private final Character dead = new Character(
-            "UNKNOWN",
-            "UNKNOWN",
-            0,
-            new Weapon(
-                    "stick",
-                    1),
-            1
-    );
-
     @Test
-    void attack() throws Exception {
+    void testCharacterCreation() {
+        Weapon fork = new Weapon("Fork", 4);
+        Character dipsy = new Character("purple", "Dipsy", 1, fork, 1);
+
+        Assertions.assertEquals("purple", dipsy.getRank());
+        Assertions.assertEquals("Dipsy", dipsy.getName());
+        Assertions.assertEquals(1, dipsy.getHealth());
+        Assertions.assertEquals(fork, dipsy.getWeapon());
+        Assertions.assertEquals(1, dipsy.getDefence());
+    }
+    @Test
+    void testAttack() {
+        Weapon machete = new Weapon("Machete", 10);
+        Weapon fork = new Weapon("Fork", 4);
+        Character zina = new Character("ЕФРЕЙТОР", "ЗИНА", 10, machete, 4);
+        Character lola = new Character("КУК", "ЛОЛА", 20, fork, 1);
+
         zina.attack(lola);
         Assertions.assertEquals(11, lola.getHealth());
     }
 
     @Test
-    void isAlive() throws Exception {
-        Assertions.assertTrue(zina.isAlive());
-        Assertions.assertFalse(dead.isAlive());
+    void testAttackNoDamage() {
+        Weapon machete = new Weapon("Machete", 10);
+        Weapon fork = new Weapon("Fork", 4);
+        Character zina = new Character("ЕФРЕЙТОР", "ЗИНА", 10, machete, 4);
+        Character lola = new Character("КУК", "ЛОЛА", 20, fork, 1);
+
+        lola.attack(zina);
+        Assertions.assertEquals(10, zina.getHealth());
+    }
+
+    @Test
+    void testCharacterIsAlive() {
+        Weapon machete = new Weapon("Machete", 20);
+        Weapon fork = new Weapon("Fork", 4);
+        Character zina = new Character("ЕФРЕЙТОР", "ЗИНА", 10, machete, 4);
+        Character lola = new Character("КУК", "ЛОЛА", 20, fork, 0);
+
+        zina.attack(lola);
+        Assertions.assertFalse(lola.isAlive());
     }
 
 }

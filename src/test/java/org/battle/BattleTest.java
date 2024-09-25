@@ -7,50 +7,34 @@ import org.junit.jupiter.api.Test;
 
 class BattleTest {
 
-    private final Team team1 = new Team(
-            "ТЕЛЕПУЗИКИ1",
-            new Character(
-                    "ЗЕЛЁНЫЙ",
-                    "ДИПСИ",
-                    10,
-                    new Weapon(
-                            "STICK",
-                            1),
-                    5),
-            new Character(
-                    "ФИОЛЕТОВЫЙ",
-                    "ТИНКИ-ВИНКИ",
-                    10,
-                    new Weapon(
-                            "STICK",
-                            1),
-                    5)
-    );
-    private final Team team2 = new Team(
-            "ТЕЛЕПУЗИКИ2",
-            new Character(
-                    "ЖЁЛТЫЙ",
-                    "ЛЯЛЯ",
-                    10,
-                    new Weapon(
-                            "STICK",
-                            10),
-                    5),
-            new Character(
-                    "КРАСНЫЙ",
-                    "ПО",
-                    10,
-                    new Weapon(
-                            "STICK",
-                            10),
-                    5)
-    );
-    Battle battle1 = new Battle(team1, team2);
-
     @Test
-    void start() {
-        battle1.start();
+    void testBattleStart() {
+        Weapon stick = new Weapon("STICK", 1);
+        Weapon gun = new Weapon("GUN", 1000);
+        Character dipsy = new Character("ЗЕЛЁНЫЙ", "ДИПСИ", 10, stick, 5);
+        Character tinkyWinky = new Character("ФИОЛЕТОВЫЙ", "ТИНКИ ВИНКИ", 10, stick, 5);
+        Character lalla = new Character("ЖЁЛТЫЙ", "ЛЯЛЯ", 10, gun, 5);
+        Character po = new Character("КРАСНЫЙ", "ПО", 10, gun, 5);
+        Team team1 = new Team("ТЕЛЕПУЗИКИ1", dipsy, tinkyWinky);
+        Team team2 = new Team("ТЕЛЕПУЗИКИ2", lalla, po);
+        Battle battle = new Battle(team1, team2);
+
+        battle.start();
         Assertions.assertFalse(team1.hasAliveMembers());
         Assertions.assertTrue(team2.hasAliveMembers());
+    }
+    @Test
+    void testBattleStartsWithNoException() {
+        Weapon stick = new Weapon("STICK", 1);
+        Weapon gun = new Weapon("GUN", 1000);
+        Character dipsy = new Character("ЗЕЛЁНЫЙ", "ДИПСИ", 10, stick, 5);
+        Character tinkyWinky = new Character("ФИОЛЕТОВЫЙ", "ТИНКИ ВИНКИ", 10, stick, 5);
+        Character lalla = new Character("ЖЁЛТЫЙ", "ЛЯЛЯ", 10, gun, 5);
+        Character po = new Character("КРАСНЫЙ", "ПО", 10, gun, 5);
+        Team team1 = new Team("ТЕЛЕПУЗИКИ1", dipsy, tinkyWinky);
+        Team team2 = new Team("ТЕЛЕПУЗИКИ2", lalla, po);
+        Battle battle = new Battle(team1, team2);
+
+        Assertions.assertDoesNotThrow(battle::start);
     }
 }
