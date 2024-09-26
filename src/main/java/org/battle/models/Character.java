@@ -2,15 +2,11 @@ package org.battle.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 @AllArgsConstructor
+@Getter
 public final class Character {
-    private static final Logger logger = LoggerFactory.getLogger(Character.class);
-
     private final String rank;
-    @Getter
     private final String name;
     private int health;
     private final Weapon weapon;
@@ -20,18 +16,21 @@ public final class Character {
         int damage = weapon.getDamage() - opponent.defence;
         if (damage > 0) {
             opponent.health -= damage;
-            logger.info("{} атакует {} с {} и наносит {} урона. У {} осталось {} здоровья",
-                    this.name,
-                    opponent.name,
-                    weapon.getName(),
-                    weapon.getDamage(),
-                    opponent.name,
-                    opponent.health);
+            // TODO подключить логгер
+            System.out.println(
+                    this.name + " атакует " +
+                    opponent.name + " с " +
+                    weapon.getName() + " и наносит " +
+                    weapon.getDamage() + " урона. У " +
+                    opponent.name + " осталось " +
+                    opponent.health + " здоровья");
         } else {
-            logger.info("{} атакует {} с {}, но урона не наносит",
-                    this.name,
-                    opponent.name,
-                    weapon.getName());
+            // TODO подключить логгер
+            System.out.println(
+                    this.name + " атакует " +
+                    opponent.name + " с " +
+                    weapon.getName() + ", но урона не наносит"
+            );
         }
     }
 

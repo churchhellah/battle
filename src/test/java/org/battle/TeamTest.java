@@ -5,11 +5,6 @@ import org.battle.models.Weapon;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.lang.reflect.Array;
-import java.util.Arrays;
-
-import static org.junit.jupiter.api.Assertions.*;
-
 class TeamTest {
 
     @Test
