@@ -8,8 +8,6 @@ import org.slf4j.LoggerFactory;
 import java.util.*;
 
 public final class Team {
-    private static final Logger logger = LoggerFactory.getLogger(Team.class);
-
     @Getter
     private final String name;
     // Команда содержит массив уникальных Character
@@ -20,9 +18,6 @@ public final class Team {
     public Team(String name, Character... members) {
         this.name = name;
         this.members = Set.of(members);
-        logger.debug("Team {} created with members: {}",
-                name,
-                Arrays.stream(members).map(Character -> Character.getName()).toList());
     }
 
     // Метод проверки наличия живых участников в members

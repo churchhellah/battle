@@ -1,13 +1,14 @@
 package org.battle;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.battle.models.Character;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @AllArgsConstructor
+@Slf4j
 public final class Battle {
-    private static final Logger logger = LoggerFactory.getLogger(Battle.class);
 
     private final Team team1,
                  team2;
@@ -22,7 +23,7 @@ public final class Battle {
             character1.attack(character2);
             // Если HP атакуемого кончились
             if (!character2.isAlive()) {
-                logger.info("{} повержен!", character2.getName());
+                log.info("{} повержен!", character2.getName());
             }
             // Проверяем, остались ли живые участники в команде после атаки
             if (team2.hasAliveMembers()) { // Если остались
@@ -30,15 +31,15 @@ public final class Battle {
                 character2.attack(character1);
                 // Если HP атакуемого кончились
                 if (!character1.isAlive()) {
-                    logger.info("{} повержен!", character1.getName());
+                    log.info("{} повержен!", character1.getName());
                 }
             }
         }
         // Если, после выхода из цикла в первой команде остались живые
         if (team1.hasAliveMembers()) {
-            logger.info("Команда {} победила!", team1.getName());
+            log.info("Команда {} победила!", team1.getName());
         } else { // Если, после выхода из цикла во второй команде остались живые
-            logger.info("Команда {} победила!", team2.getName());
+            log.info("Команда {} победила!", team2.getName());
         }
     }
 }
