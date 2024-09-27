@@ -2,20 +2,27 @@ package org.battle.models;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 class CharacterTest {
 
-    @Test
-    void testCharacterCreation() {
-        Weapon fork = new Weapon("Fork", 4);
-        Character dipsy = new Character("purple", "Dipsy", 1, fork, 1);
+    @ParameterizedTest
+    @CsvSource(value = {
+            "purple, Tinky Winky, 1, 1, sword, 10",
+            "зелёный, Дипси, -1, 100, fork, 4",
+            "yellow, Lalla, 10000, 1, gun, -4",
+            "red, Po, 1, 1, grenade, 1000"
+    })
+    void testCharacterCreation(String rank, String name, int health, int defence, String weaponName, int weaponDamage) {
+        Character teletubbie = new Character(rank, name, health, new Weapon(weaponName, weaponDamage), defence);
 
-        Assertions.assertEquals("purple", dipsy.getRank());
-        Assertions.assertEquals("Dipsy", dipsy.getName());
-        Assertions.assertEquals(1, dipsy.getHealth());
-        Assertions.assertEquals(fork, dipsy.getWeapon());
-        Assertions.assertEquals(1, dipsy.getDefence());
+        Assertions.assertEquals(rank, teletubbie.getRank());
+        Assertions.assertEquals(name, teletubbie.getName());
+        Assertions.assertEquals(health, teletubbie.getHealth());
+        Assertions.assertEquals(defence, teletubbie.getDefence());
     }
+
     @Test
     void testAttack() {
         Weapon machete = new Weapon("Machete", 10);
