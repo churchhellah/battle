@@ -1,8 +1,7 @@
 package org.battle;
 
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import org.battle.models.Character;
+import org.battle.models.AbstractCharacter;
 
 @AllArgsConstructor
 public final class Battle {
@@ -13,7 +12,7 @@ public final class Battle {
         // Пока в каждой из команд есть живые участники
         while (team1.hasAliveMembers() && team2.hasAliveMembers()) {
             // Получаем по одному участнику из команды
-            Character character1 = team1.getAliveMember(),
+            AbstractCharacter character1 = team1.getAliveMember(),
                       character2 = team2.getAliveMember();
             // Участник первой команды атакует участника второй команды
             character1.attack(character2);
