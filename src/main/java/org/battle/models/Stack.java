@@ -31,12 +31,13 @@ public final class Stack<T extends Ammo> {
 
     // Метод для получения паторона из обоймы для выстрела
     public T pop() throws StackEmptyException {
+        // Если обойма пустая, то вернется Exception
         if (clip.isEmpty()) {
             throw new StackEmptyException();
         }
-        // TODO тут продумать, как правильно получить объект из List и удалить его
-        return clip.get(1);
-        // clip.remove(1);
+        // Иначе вернется первый объект из исписка
+        // и он же удалится
+        return clip.remove(0);
     }
 
     // Метод для проверки обоймы на пустоту
