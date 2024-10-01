@@ -22,8 +22,65 @@
 * Переменные, которые не изменяются в программе, должны быть объявлены неизменяемыми.
 * Различные выводы в консоль начинаются с новой строки.
 
-TO DO
+```plantuml
+@startuml
+package models {
+    class Stack {
+        +push()
+        +pop()
+        +isEmpty()
+    }
+    enum Ammo {}
+    Ammo <.. Stack
+    class AbstractWeapon {
+        -maxClipSize
+        -shootType
+        -clip
+        -isEmptyClip
+        +createAmmo()
+        +reload()
+        +getAmmoForShoot()
+    }
+    AbstractWeapon::createAmmo ..> Ammo
+    AbstractWeapon::reload ..> Stack
+    class Weapons {}
+    Weapons --|> AbstractWeapon
+    interface Warrior {
+        -isKilled
+        -dodge
+        +attack()
+        +getDamage()
+    }
+    abstract AbstractWarrior {
+        -maxHealth
+        -dodge
+        -accuracy
+        -weapon
+        -currentHealth
+        +attack()
+        +getDamage()
+    }
+    AbstractWarrior ..|> Warrior
+    AbstractWarrior ..> Weapons
+    class General {}
+    General --|> AbstractWarrior
+    class Captain {}
+    Captain --|> AbstractWarrior
+    class Solder {}
+    Solder --|> AbstractWarrior
+    class Team {}
+    Team ..> General
+    Team ..> Captain
+    Team ..> Solder
+}
+package services {
+    class Battle {
+        +start()
+    }
+    Battle ..> Team
+}
+class App {}
+@enduml
+```
 
-- Подключить логгер
-- Неизменяемые коллекции добить
-- Тесты написать
+![img.png](local/images/img.png)
