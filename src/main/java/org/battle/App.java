@@ -1,13 +1,13 @@
 package org.battle;
 
 import org.battle.models.AbstractCharacter;
-import org.battle.models.Weapon;
+import org.battle.models.Weapons;
 
 public final class App {
     public static void main(String[] args ) {
         // Создаем оружие
-        Weapon knife = new Weapon("KNIFE", 11),
-               gun = new Weapon("GUN", 20);
+        Weapons knife = new Weapons("KNIFE", 11),
+               gun = new Weapons("GUN", 20);
 
         // Создаем участников команд
         AbstractCharacter vasya = new AbstractCharacter("COMMANDER", "ВАСЯ", 30, gun, 15),

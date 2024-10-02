@@ -22,10 +22,6 @@ public final class Stack<T extends Ammo> {
 
     // Метод для добавления патрона в обойму
     public void push(T ammo) throws StackFullException {
-        // TODO добавить лимит патронов в зависимости от оружия
-//        if (AbstractWeapon.getClipLimit == clip.length) {
-//            throw new StackFullException(magazine.length);
-//        }
         clip.add(ammo);
     }
 
