@@ -1,21 +1,42 @@
 package org.battle.models;
 
+/*
+Создай класс оружия AbstractWeapon.
+
+Максимальное количество патронов в магазине.
+Вид стрельбы
+Магазин патронов. Используй класс Stack. Вначале магазин очевидно пуст.
+Факт наличия патронов в магазине
+Какие методы могут быть?
+
+создание патрона необходимого типа;
+перезарядка — создаётся новый магазин и заполняется патронами с помощью функции создания патрона;
+получение патронов для выстрела — из магазина получаются патроны в соответствии с типом стрельбы для выстрела(-ов) (количество патронов в магазине должно уменьшаться).
+*/
+
+import lombok.Getter;
+
+// Абстрактный класс для оружия
+@Getter
 public abstract class AbstractWeapon {
-    // Переменная, содержащая максимальное количество патронов в магазине
-    private int maxClipSize;
-    // Переменная, содержащая тип стрельбы оружия
-    private ShootType shootType;
-    // Переменная, содержащая обойму
-    private Stack<Ammo> clip;
-    // Переменная, содержащая признак, что обойма пуста
-    private boolean isEmptyClip = clip.isEmpty();
+    protected int maxClipSize; // Переменная, содержащая максимальное количество патронов в магазине
+    private ShootType shootType; // Переменная, содержащая тип стрельбы оружия
+    Stack<Ammo> clip; // Переменная, содержащая обойму
 
-    // Метод создания патрона
-    public abstract Ammo createAmmo(String ammoType);
+    public AbstractWeapon(int maxClipSize, ShootType shootType) {
+        this.maxClipSize = maxClipSize;
+        this.shootType = shootType;
+    }
 
-    // Метод перезарядки
-    public abstract void reload(String ammoType);
+    // Метод проверки наличия патронов в обойме
+    public boolean isEmptyClip() {
+        return clip.isEmpty();
+    }
 
-    // Метод получения патрона для выстрела
+    // Абстрактный метод создания патрона
+    protected abstract Ammo createAmmo();
+    // Абстрактный метод перезарядки
+    public abstract void reload();
+    // Абстрактный метод получения патрона для выстрела
     public abstract Ammo getAmmoForShoot();
 }

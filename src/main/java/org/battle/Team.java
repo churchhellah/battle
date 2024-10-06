@@ -1,18 +1,18 @@
 package org.battle;
 
 import lombok.Getter;
-import org.battle.models.AbstractCharacter;
+import org.battle.models.AbstractWarrior;
 import java.util.*;
 
 public final class Team {
     @Getter
     private final String name;
     // Команда содержит массив уникальных Character
-    private final Set<AbstractCharacter> members;
+    private final Set<AbstractWarrior> members;
 
     // Конструктор класса. Принимает на вход массив объектов Character
     // и делает из него неизменяемый Set
-    public Team(String name, AbstractCharacter... members) {
+    public Team(String name, AbstractWarrior... members) {
         this.name = name;
         this.members = Set.of(members);
     }
@@ -23,8 +23,8 @@ public final class Team {
     }
 
     // Метод получения живого участника из members
-    public AbstractCharacter getAliveMember() {
-        for (AbstractCharacter member : members) {
+    public AbstractWarrior getAliveMember() {
+        for (AbstractWarrior member : members) {
             if (member.isAlive()) {
                 return member;
             }

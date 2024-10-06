@@ -1,6 +1,6 @@
 package org.battle;
 
-import org.battle.models.AbstractCharacter;
+import org.battle.models.AbstractWarrior;
 import org.battle.models.Weapons;
 
 public final class App {
@@ -10,10 +10,10 @@ public final class App {
                gun = new Weapons("GUN", 20);
 
         // Создаем участников команд
-        AbstractCharacter vasya = new AbstractCharacter("COMMANDER", "ВАСЯ", 30, gun, 15),
-                  petya = new AbstractCharacter("WARRIOR", "ПЕТЯ", 25, gun, 10),
-                  vova = new AbstractCharacter("COMMANDER", "ВОВА", 30, gun, 15),
-                  kolya = new AbstractCharacter("WARRIOR", "КОЛЯ", 25, knife, 10);
+        AbstractWarrior vasya = new AbstractWarrior("COMMANDER", "ВАСЯ", 30, gun, 15),
+                  petya = new AbstractWarrior("WARRIOR", "ПЕТЯ", 25, gun, 10),
+                  vova = new AbstractWarrior("COMMANDER", "ВОВА", 30, gun, 15),
+                  kolya = new AbstractWarrior("WARRIOR", "КОЛЯ", 25, knife, 10);
 
         // Создаем первую команду, передаем в нее имя и членов команды
         Team terrorists = new Team("TERRORISTS", vasya, petya),

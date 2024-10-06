@@ -1,4 +1,6 @@
 package org.battle.models;
 
-public class ShootType {
+public enum ShootType {
+    BURST,
+    SINGLE_SHOT
 }
