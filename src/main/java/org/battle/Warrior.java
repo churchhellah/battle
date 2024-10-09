@@ -1,4 +1,4 @@
-package org.battle.models;
+package org.battle;
 
 /*
 Создай интерфейс война
@@ -13,9 +13,10 @@ package org.battle.models;
 public interface Warrior {
 
     boolean isKilled(); // Проверка на то, убит ли воин
-    int dodgeChance(); // Шанс уклонения
 
-    void attack(AbstractWarrior opponent); // атаковать противника
+    double getDodge(); // Шанс уклонения
+
+    void attack(Warrior opponent); // атаковать противника
 
     void takeDamage(int damage); // получить урон
 }

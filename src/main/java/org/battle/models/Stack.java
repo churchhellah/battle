@@ -1,37 +1,27 @@
 package org.battle.models;
 
 import lombok.Getter;
-import org.battle.exceptions.StackEmptyException;
-import org.battle.exceptions.StackFullException;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 @Getter
-public final class Stack<T extends Ammo> {
-    // Переменная, которая будет содержать тип патрона
-    private T ammo;
-    // Переменная, которая будет содержать обойму
-    private List<T> clip;
-
-    // В констуркторе инициализируем ammo и создаем пустую обойму
-    public Stack(T ammo) {
-        this.ammo = ammo;
-        this.clip = new ArrayList<>();
-    }
+public final class Stack<T> implements Iterable<T> {
+    private final List<T> clip = new ArrayList<>();
 
     // Метод для добавления патрона в обойму
-    public void push(T ammo) throws StackFullException {
+    public void push(T ammo) {
         clip.add(ammo);
     }
 
     // Метод для получения паторона из обоймы для выстрела
-    public T pop() throws StackEmptyException {
-        // Если обойма пустая, то вернется Exception
+    public T pop() {
+        // Если обойма пустая, то вернется null
         if (clip.isEmpty()) {
-            throw new StackEmptyException();
+            return null;
         }
-        // Иначе вернется первый объект из исписка
+        // Иначе вернется первый объект из списка
         // и он же удалится
         return clip.remove(0);
     }
@@ -39,5 +29,11 @@ public final class Stack<T extends Ammo> {
     // Метод для проверки обоймы на пустоту
     public boolean isEmpty() {
         return clip.isEmpty();
+    }
+
+    // Возвращаем итератор для поддержки foreach цикла
+    @Override
+    public Iterator<T> iterator() {
+        return clip.iterator();
     }
 }

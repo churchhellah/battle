@@ -1,12 +1,11 @@
 package org.battle.models;
 
-import org.battle.exceptions.StackEmptyException;
-import org.battle.exceptions.StackFullException;
-
 /*
 Синглтон-объект Weapons, который создаёт разные виды оружия.
 Объект Weapons должен создавать анонимные объекты AbstractWeapon.
  */
+
+import org.battle.types.ShootType;
 
 class Weapons {
     private static Weapons instance;
@@ -14,7 +13,7 @@ class Weapons {
     // Приватный конструктор для того, чтобы создавать объет можно было единожды
     private Weapons() {}
 
-    // Метод для получения единстввенного экземпляра синглтона
+    // Метод для получения единственного экземпляра синглтона
     public static Weapons getInstance() {
         if (instance == null) {
             instance = new Weapons();
@@ -23,38 +22,8 @@ class Weapons {
     }
 
     // Фабричный метод, который возвращает анонимные классы оружия
-    public AbstractWeapon createWeapon(int maxClipSize, ShootType shootType, String ammoType) {
+    public AbstractWeapon createWeapon(int maxClipSize, ShootType shootType) {
         return new AbstractWeapon(maxClipSize, shootType) {
-            // Метод для создания патрона
-            @Override
-            protected Ammo createAmmo() {
-                return Ammo.valueOf(ammoType);
-            }
-            // Метод для перезарядки оружия
-            @Override
-            public void reload() {
-                for (int i = 0; i < maxClipSize; i++) {
-                    try {
-                        clip.push(createAmmo());
-                    } catch (StackFullException e) {
-                        throw new RuntimeException(e);
-                    }
-                }
-            }
-            // Метод для получения патрона для выстрела
-            @Override
-            public Ammo getAmmoForShoot() {
-                if (isEmptyClip()) {
-                    return null;
-                } else {
-                    try {
-                        Ammo ammo = clip.pop();
-                        return ammo;
-                    } catch (StackEmptyException e) {
-                        throw new RuntimeException(e);
-                    }
-                }
-            }
         };
     }
 }

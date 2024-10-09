@@ -15,28 +15,44 @@ package org.battle.models;
 */
 
 import lombok.Getter;
+import org.battle.types.ShootType;
 
 // Абстрактный класс для оружия
 @Getter
 public abstract class AbstractWeapon {
     protected int maxClipSize; // Переменная, содержащая максимальное количество патронов в магазине
-    private ShootType shootType; // Переменная, содержащая тип стрельбы оружия
+    private final ShootType shootType; // Переменная, содержащая тип стрельбы оружия
     Stack<Ammo> clip; // Переменная, содержащая обойму
 
     public AbstractWeapon(int maxClipSize, ShootType shootType) {
         this.maxClipSize = maxClipSize;
         this.shootType = shootType;
+        this.clip = new Stack<>();
+    }
+
+    // Метод перезарядки
+    public void reload(Ammo ammoType) {
+        clip = new Stack<>(); // Создается новая обойма
+        for (int i = 0; i < maxClipSize; i++) {
+            clip.push(ammoType); // Заполняем обойму
+        }
+    }
+
+    // Метод получения патрона для выстрела
+    public Stack<Ammo> getAmmoForShoot() {
+        Stack<Ammo> ammoToShoot = new Stack<>();
+        int shotsNumber = (shootType == ShootType.SINGLE_SHOT) ? 1 : Math.min(3, maxClipSize);
+        for (int i = 0; i < shotsNumber; i++) {
+            Ammo ammo = clip.pop();
+            if (ammo != null) {
+                ammoToShoot.push(ammo);
+            }
+        }
+        return ammoToShoot;
     }
 
     // Метод проверки наличия патронов в обойме
     public boolean isEmptyClip() {
         return clip.isEmpty();
     }
-
-    // Абстрактный метод создания патрона
-    protected abstract Ammo createAmmo();
-    // Абстрактный метод перезарядки
-    public abstract void reload();
-    // Абстрактный метод получения патрона для выстрела
-    public abstract Ammo getAmmoForShoot();
 }
