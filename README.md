@@ -22,6 +22,7 @@
 * Переменные, которые не изменяются в программе, должны быть объявлены неизменяемыми.
 * Различные выводы в консоль начинаются с новой строки.
 
+//www.plantuml.com/plantuml/png/RLBBRjmm3BphAtHi4En-G504ITD7WHuTe6TMPdU5w258TDjjklzUow8ZoRi-6EAG6Wx5UKW4aIPhH03r0WUKrezeadmLSlwKWPJaG7EEaVpTXYaTtzqqiGzjgDCd6-Z4q7dvevkiVBJMozS5AEVt-trXRxez_aWKGT5tXE1TqtPduS-JqM7GVx62wUWzFPz20wcvgAfH4O4mjsirHZGUnXOv8EMYppuEcVBAGBbvDrGlzUwkjfBx_VqoujMwqZpNN4nVIXA_4eDVq644quDF40Yqwy71cn5ZZpqZM4RAEVTboXvaoWvaId5-SqZ2-4ihx3to0OWCjYPPdDKz5zTaqipUKD8fC1yxPLYtceMV1QlDLsjAiDmDMlHkGBPM29aFU1rrBn2Zzd7ZjQy8XeuL6lrum1g2KbC4TQh8xsLtDPxp4HrjU6w1yiutrli85WxOFLUlhap4zX3Q4SQVe53ssdNwfet1rTYPEAlca3klLtm8tg6ZaYHuGLQX7SbnETw8ixZKyUz-RIjMl-vsCzZxVDrQd-EBw_Ak9dc7rtCFwCR9cly0
 ```plantuml
 @startuml
 package models {
@@ -36,38 +37,17 @@ package models {
         -maxClipSize
         -shootType
         -clip
-        -isEmptyClip
         +createAmmo()
         +reload()
         +getAmmoForShoot()
+        +isEmptyClip()
     }
     AbstractWeapon::createAmmo ..> Ammo
     AbstractWeapon::reload ..> Stack
     class Weapons {}
-    Weapons --|> AbstractWeapon
-    interface Warrior {
-        -isKilled
-        -dodge
-        +attack()
-        +getDamage()
-    }
-    abstract AbstractWarrior {
-        -maxHealth
-        -dodge
-        -accuracy
-        -weapon
-        -currentHealth
-        +attack()
-        +getDamage()
-    }
-    AbstractWarrior ..|> Warrior
-    AbstractWarrior ..> Weapons
     class General {}
-    General --|> AbstractWarrior
     class Captain {}
-    Captain --|> AbstractWarrior
     class Solder {}
-    Solder --|> AbstractWarrior
     class Team {}
     Team ..> General
     Team ..> Captain
@@ -79,7 +59,34 @@ package services {
     }
     Battle ..> Team
 }
+package types {
+    enum ShootType {}
+}
+General ..> ShootType
+Captain ..> ShootType
+Solder ..> ShootType
 class App {}
+abstract AbstractWarrior {
+        -maxHealth
+        -dodge
+        -accuracy
+        -weapon
+        -currentHealth
+        +attack()
+        +getDamage()
+    }
+    AbstractWarrior ..> Weapons
+interface Warrior {
+    isKilled()
+    getDodge()
+    attack(Warrior opponent)
+    takeDamage(int damage)
+}
+AbstractWarrior ..|> Warrior
+Weapons --|> AbstractWeapon
+General --|> AbstractWarrior
+Captain --|> AbstractWarrior
+Solder --|> AbstractWarrior
 @enduml
 ```
 
