@@ -3,8 +3,6 @@ package org.battle;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.battle.models.Character;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 @AllArgsConstructor
 @Slf4j
