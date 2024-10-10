@@ -1,6 +1,7 @@
 package org.battle;
 
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.battle.models.Character;
 
 @AllArgsConstructor
