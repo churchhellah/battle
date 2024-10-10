@@ -3,7 +3,8 @@ package org.battle;
 import org.battle.models.Character;
 import org.battle.models.Weapon;
 
-public final class App {
+public final class App
+{
     public static void main(String[] args ) {
         // Создаем оружие
         Weapon knife = new Weapon("KNIFE", 11),

@@ -2,13 +2,11 @@ package org.battle.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
 
 @AllArgsConstructor
+@Getter
 public final class Character {
     private final String rank;
-    @Getter
     private final String name;
     private int health;
     private final Weapon weapon;
