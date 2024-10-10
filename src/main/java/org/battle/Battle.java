@@ -2,13 +2,9 @@ package org.battle;
 
 import lombok.AllArgsConstructor;
 import org.battle.models.Character;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 @AllArgsConstructor
 public final class Battle {
-    private static final Logger logger = LoggerFactory.getLogger(Battle.class);
-
     private final Team team1,
                  team2;
 
@@ -22,7 +18,8 @@ public final class Battle {
             character1.attack(character2);
             // Если HP атакуемого кончились
             if (!character2.isAlive()) {
-                logger.info("{} повержен!", character2.getName());
+                // TODO подключить логгер
+                System.out.println(character2.getName() + " повержен!");
             }
             // Проверяем, остались ли живые участники в команде после атаки
             if (team2.hasAliveMembers()) { // Если остались
@@ -30,15 +27,18 @@ public final class Battle {
                 character2.attack(character1);
                 // Если HP атакуемого кончились
                 if (!character1.isAlive()) {
-                    logger.info("{} повержен!", character1.getName());
+                    // TODO подключить логгер
+                    System.out.println(character1.getName() + " повержен!");
                 }
             }
         }
         // Если, после выхода из цикла в первой команде остались живые
         if (team1.hasAliveMembers()) {
-            logger.info("Команда {} победила!", team1.getName());
+            // TODO подключить логгер
+            System.out.println("Команда " + team1.getName() + " победила!");
         } else { // Если, после выхода из цикла во второй команде остались живые
-            logger.info("Команда {} победила!", team2.getName());
+            // TODO подключить логгер
+            System.out.println("Команда " + team2.getName() + " победила!");
         }
     }
 }
