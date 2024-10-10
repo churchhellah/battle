@@ -2,6 +2,7 @@ package org.battle;
 
 import lombok.Getter;
 import org.battle.models.Character;
+
 import java.util.*;
 
 public final class Team {
