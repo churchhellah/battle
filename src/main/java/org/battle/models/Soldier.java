@@ -7,4 +7,9 @@ public class Soldier extends AbstractWarrior {
     public Soldier() {
         super(100, 0.1, 0.7, Weapons.getInstance().createWeapon(30, ShootType.SINGLE_SHOT));
     }
+
+    @Override
+    protected void reload() {
+        super.weapon.reload(Ammo.SELF_MADE);
+    }
 }
