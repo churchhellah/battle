@@ -6,10 +6,10 @@ import org.battle.Warrior;
 
 import java.util.*;
 
+@Getter
 public final class Team {
     // Команда содержит массив Warrior
     private final List<Warrior> members;
-    @Getter
     private final String name;
 
     // Конструктор класса. Принимает на вход массив объектов Warrior

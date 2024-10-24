@@ -1,5 +1,6 @@
 package org.battle;
 
+import lombok.Getter;
 import org.battle.models.AbstractWeapon;
 import org.battle.models.Ammo;
 import org.battle.models.Stack;
@@ -22,6 +23,7 @@ import org.battle.models.Stack;
     Нанести урон врагу.
 - Понести урон (метод интерфейса) — отнять от текущего уровня здоровья урон.
  */
+@Getter
 public abstract class AbstractWarrior implements Warrior {
 
     private final int maxHealth; // максимальный уровень здоровья
