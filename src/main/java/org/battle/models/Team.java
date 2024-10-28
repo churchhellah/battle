@@ -33,15 +33,17 @@ public final class Team {
 
     // Метод проверки наличия живых участников в members
     public boolean hasAliveMembers() {
-        return this.members.stream().anyMatch(Warrior -> !Warrior.isKilled());
+        return this.members
+                .stream()
+                .anyMatch(Warrior -> !Warrior.isKilled());
     }
 
     // Метод получения живого участника из members
     public Warrior getAliveMember() {
-        for (Warrior member : members) {
-            if (!member.isKilled()) {
-                return member;
-            }
-        } return null;
+        return this.members
+                .stream()
+                .filter(Warrior -> !Warrior.isKilled())
+                .findAny()
+                .orElse(null);
     }
 }
