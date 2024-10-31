@@ -30,7 +30,7 @@ public abstract class AbstractWarrior implements Warrior {
     private int currentHealth; // текущий уровень здоровья
     private final double dodge; // уклонение — шанс избежать попадания
     private final double accuracy; // точность — вероятность попадания
-    private final AbstractWeapon weapon; // оружие
+    protected final AbstractWeapon weapon; // оружие
 
     public AbstractWarrior(int maxHealth,
                            double dodge,
@@ -51,26 +51,33 @@ public abstract class AbstractWarrior implements Warrior {
     @Override
     public void attack(Warrior opponent) {
         // если патронов в оружии нет, перезарядить оружие и пропустить ход.
-        if (weapon.isEmptyClip()) {
-            weapon.reload(Ammo.DEFAULT);
+        if (weapon.isEmptyClip()) { // Если обойма пустая - вызвать метод перезарядки оружия
+            reload();
             log.info("{} перезаряжает оружие", this.getClass().getSimpleName());
             return;
         }
-        Stack<Ammo> ammo = weapon.getAmmoForShoot();
-        int totalDamage = 0;
-
-        for (Ammo bullet : ammo) {
+        Stack<Ammo> ammo = weapon.getAmmoForShoot(); // Создаем объект типа Stack, в него складываем патроны для выстрела,
+                                                     // так как стрелять могут одиночным выстрелом или очередью
+        int totalDamage = 0; // Переменная, в которую складываем общий урон от атаки
+        // А здесь проверяем критический урон от выстрела
+        for (Ammo bullet : ammo) { // пока объект Ammo в очереди на стрельбу
+            // Если случайное число меньше точности война и больше уклонения оппонента, то
             if (Math.random() < accuracy && Math.random() > opponent.getDodge()) {
+                // Инициализируем переменную - в ней случайное число для подсчета крита
                 double critChance = Math.random();
+                // Инициализируем переменную урона - в нее кладем урон от пули
                 int damage = bullet.getDamage();
+                // Если critChance меньше шанса крита пули, то урон удваивается
                 if (critChance < bullet.getCritChance()) {
                     damage *= 2;
                     log.info("{} наносит критический урон",
                             this.getClass().getSimpleName());
                 }
+                // Прибавляем полученный урон к общему урону
                 totalDamage += damage;
             }
         }
+        // Передаем оппоненту, что он не жилец!
         opponent.takeDamage(totalDamage);
         log.info("{} нанес {} {} урона",
                 this.getClass().getSimpleName(),
@@ -87,4 +94,7 @@ public abstract class AbstractWarrior implements Warrior {
     public double getDodge() {
         return dodge;
     }
+    // Реализуем абстактный метод перезарядки,
+    // чтобы наследники могли перезаряжать оружие разными типами патронов
+    protected abstract void reload();
 }
