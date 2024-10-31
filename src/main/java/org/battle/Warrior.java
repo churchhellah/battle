@@ -9,7 +9,6 @@ package org.battle;
 - атаковать — на вход принимает противника (Warrior),
 - получить урон — на вход принимает количество урона.
  */
-
 public interface Warrior {
 
     boolean isKilled(); // Проверка на то, убит ли воин

@@ -1,5 +1,6 @@
 package org.battle;
 
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.battle.models.AbstractWeapon;
 import org.battle.models.Ammo;
@@ -23,6 +24,7 @@ import org.battle.models.Stack;
     Нанести урон врагу.
 - Понести урон (метод интерфейса) — отнять от текущего уровня здоровья урон.
  */
+@Getter
 @Slf4j
 public abstract class AbstractWarrior implements Warrior {
 
