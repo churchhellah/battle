@@ -18,6 +18,9 @@
     <junit.version>3.8.1</junit.version>
     <lombok.version>1.18.30</lombok.version>
     <commons-collections4.version>4.5.0-M2</commons-collections4.version>
+    <log4j-api.version>2.20.0</log4j-api.version>
+    <log4j-core.version>2.20.0</log4j-core.version>
+    <log4j-slf4j-impl.version>2.20.0</log4j-slf4j-impl.version>
   </properties>
 
   <dependencies>
@@ -38,5 +41,22 @@
       <artifactId>commons-collections4</artifactId>
       <version>${commons-collections4.version}</version>
     </dependency>
+    <!--logging-->
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-api</artifactId>
+      <version>${log4j-api.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-core</artifactId>
+      <version>${log4j-core.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-slf4j-impl</artifactId>
+      <version>${log4j-slf4j-impl.version}</version>
+    </dependency>
+    <!--logging-->
   </dependencies>
 </project>

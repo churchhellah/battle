@@ -1,5 +1,6 @@
 package org.battle;
 
+import lombok.extern.slf4j.Slf4j;
 import org.battle.models.AbstractWeapon;
 import org.battle.models.Ammo;
 import org.battle.models.Stack;
@@ -22,6 +23,7 @@ import org.battle.models.Stack;
     Нанести урон врагу.
 - Понести урон (метод интерфейса) — отнять от текущего уровня здоровья урон.
  */
+@Slf4j
 public abstract class AbstractWarrior implements Warrior {
 
     private final int maxHealth; // максимальный уровень здоровья
@@ -51,6 +53,7 @@ public abstract class AbstractWarrior implements Warrior {
         // если патронов в оружии нет, перезарядить оружие и пропустить ход.
         if (weapon.isEmptyClip()) { // Если обойма пустая - вызвать метод перезарядки оружия
             reload();
+            log.info("{} перезаряжает оружие", this.getClass().getSimpleName());
             return;
         }
         Stack<Ammo> ammo = weapon.getAmmoForShoot(); // Создаем объект типа Stack, в него складываем патроны для выстрела,
@@ -67,6 +70,8 @@ public abstract class AbstractWarrior implements Warrior {
                 // Если critChance меньше шанса крита пули, то урон удваивается
                 if (critChance < bullet.getCritChance()) {
                     damage *= 2;
+                    log.info("{} наносит критический урон",
+                            this.getClass().getSimpleName());
                 }
                 // Прибавляем полученный урон к общему урону
                 totalDamage += damage;
@@ -74,6 +79,10 @@ public abstract class AbstractWarrior implements Warrior {
         }
         // Передаем оппоненту, что он не жилец!
         opponent.takeDamage(totalDamage);
+        log.info("{} нанес {} {} урона",
+                this.getClass().getSimpleName(),
+                opponent.getClass().getSimpleName(),
+                totalDamage);
     }
 
     @Override
