@@ -1,6 +1,5 @@
 package org.battle.models;
 
-import org.battle.Warrior;
 import org.battle.types.ShootType;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

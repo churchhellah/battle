@@ -1,17 +1,11 @@
 package org.battle;
 
 import org.battle.models.AbstractWeapon;
-import org.battle.models.Ammo;
 import org.battle.models.Soldier;
-import org.battle.models.Stack;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.Iterator;
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 class AbstractWarriorTest {
